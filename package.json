@@ -1,0 +1,21 @@
+{
+  "name": "golddigger",
+  "version": "1.0.0",
+  "description": "purchase gold at current market price",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biosoluwa/GoldDigger.git"
+  },
+  "author": "biosoluwa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/biosoluwa/GoldDigger/issues"
+  },
+  "homepage": "https://github.com/biosoluwa/GoldDigger#readme"
+}
