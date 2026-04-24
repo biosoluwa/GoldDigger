@@ -1,6 +1,6 @@
 import { getLivePrice } from "../utils/getLivePrice.js";
 import { parseJSONBody } from "../utils/parseIncomingBody.js";
-
+import {addNewPurchase} from '../utils/addNewPurchase.js'
 
 export function handleLivePrice(res){
     res.statusCode = 200
@@ -19,8 +19,9 @@ export function handleLivePrice(res){
 }
 
 export async function handlePost(req, res){
-    res.statusCode = 200
-    res.setHeader('Content-Type', 'application/json')
-  const body = await  parseJSONBody(req)
-  console.log(body)
+    // res.statusCode = 200
+    // res.setHeader('Content-Type', 'application/json')
+    const body = await parseJSONBody(req)
+    console.log(body)
+    addNewPurchase(body)
 }
