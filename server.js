@@ -10,7 +10,7 @@ const server = http.createServer(async function(req, res){
     if(req.url === '/price/live'){
         handleLivePrice(res)
     }else if(req.url === '/api'){
-        handlePost(req, res)
+       await handlePost(req, res)
     }else{
         await serveStatic(req, res, __dirname)
     }

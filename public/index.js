@@ -21,20 +21,20 @@ eventSource.onerror = () => {
 form.addEventListener('submit', async function(e){
 e.preventDefault()
 
-    const amount = document.getElementById('investment-amount').value
-    const price = priceDisplay.textContent
-    const weight = amount/price
+const amount = document.getElementById('investment-amount').value
+const price = priceDisplay.textContent
+const weight = amount/price
 
-    investmentSummary.textContent = `You just bought ${(weight).toFixed(2)}ounces (ozt) for £${amount}. \n You will receive documentation shortly.`
-    dialog.showModal()
+investmentSummary.textContent = `You just bought ${(weight).toFixed(2)}ounces (ozt) for £${amount}. \n You will receive documentation shortly.`
 
 const goldData = {
         date: new Date(),
         "amount paid": `£${amount}`,
         "price per Oz": `£${price}`,
         "gold sold": `${weight} Oz`
-    }
-    
+}
+
+try{
 const res = await fetch('./api', {
     method: "POST",
     headers:{
@@ -42,9 +42,12 @@ const res = await fetch('./api', {
     },
     body: JSON.stringify(goldData)
 })
+}catch(err){
+    console.log(err)
+}
 
 
-
+dialog.showModal()
 })
 
 document.getElementById('dialog-button').addEventListener('click', function(){
