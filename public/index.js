@@ -2,6 +2,7 @@ const priceDisplay = document.getElementById('price-display')
 const form = document.querySelector('form')
 const dialog = document.querySelector('dialog')
 const investmentSummary = document.getElementById('investment-summary')
+const connectionStatus = document.getElementById('connection-status')
 
 
 
@@ -10,12 +11,14 @@ const eventSource = new EventSource('/price/live')
 eventSource.onmessage = event => {
     const data = JSON.parse(event.data)
     const price = data.newPrice
+    connectionStatus.textContent = 'Live Price 🟢'
     priceDisplay.textContent = price
 }
 
 
 eventSource.onerror = () => {
     console.log('connection failed')
+    connectionStatus.textContent = 'Disconnected 🔴'
 }
 
 form.addEventListener('submit', async function(e){
@@ -46,7 +49,7 @@ const res = await fetch('./api', {
     console.log(err)
 }
 
-
+document.getElementById('investment-amount').value = ''
 dialog.showModal()
 })
 

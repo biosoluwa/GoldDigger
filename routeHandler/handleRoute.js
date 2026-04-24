@@ -9,13 +9,17 @@ export function handleLivePrice(res){
     res.setHeader('Cache-Control', 'no-cache')
     res.setHeader('Connection', 'keep-alive')
 
-    setInterval(() => {
+  const interval =  setInterval(() => {
         const price = getLivePrice()
         res.write(`data:${JSON.stringify({
                event: 'price-updated',
                newPrice : price
             })}\n\n`)
     }, 3000)
+
+    res.on('close', function(){
+        clearInterval(interval)
+    })
 
 }
 
